@@ -16,6 +16,7 @@ public static class ChatManager
         image.sprite = profile.profilePic;
 
         MessageHandler messageHandler = GameObject.Find("Canvas/Grid/Page1/InputBar/InputField").GetComponent<MessageHandler>();
+        Debug.Log("message");
         messageHandler.SetMessages(profile);
 
         PageSwapper.SetPage(1);
