@@ -7,22 +7,23 @@ public class PageManager : MonoBehaviour
 {
 
     public static PageManager instance;
+
+    void Awake()
+    {
+        int numGameobject = GameObject.FindGameObjectsWithTag("PageManager").Length;
+        if (numGameobject > 1)
+            Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
+    }
     // Use this for initialization
     void Start()
     {
         instance = this;
-//        usernameInputField = username.transform.GetChild(0).GetComponent<InputField>();
-//        passwordInputField = password.transform.GetChild(0).GetComponent<InputField>();
-//        BackClick();
     }
 	
     // Update is called once per frame
     void Update()
     {
-//        usernameString = usernameInputField.text;
-//        passwordString = passwordInputField.text;
-//        Debug.Log("il testo nome contiene " + usernameString);
-//        Debug.Log("il testo password contiene " + passwordString);
     }
 
     public void BackClick(string pageName)
