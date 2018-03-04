@@ -16,6 +16,7 @@ public class MainPage : MonoBehaviour
     //    TouchScreenKeyboard keyboard;
     string usernameString;
     string passwordString;
+    public string[] items;
 
     InputField usernameInputField;
     InputField passwordInputField;
@@ -26,7 +27,31 @@ public class MainPage : MonoBehaviour
         usernameInputField = username.transform.GetChild(0).GetComponent<InputField>();
         passwordInputField = password.transform.GetChild(0).GetComponent<InputField>();
     }
-	
+
+    IEnumerator StartConnection()
+    {
+        WWW itemsData = new WWW("http://localhost/QueryDB/Query.php");
+        yield return itemsData;
+        string itemsDataString = itemsData.text;
+        Debug.Log(itemsDataString);
+        items = itemsDataString.Split(';');
+        Debug.Log(GetDataValue(items[1], "Name:"));
+    }
+
+    IEnumerator InsertData()
+    {
+        WWW itemsData = new WWW("http://localhost/QueryDB/Insert.php");
+        yield return itemsData;
+        Debug.Log("Insert");
+    }
+
+    string GetDataValue(string data, string index)
+    {
+        string value = data.Substring(data.IndexOf(index) + index.Length);
+//        value = value.Remove(value.IndexOf("|"));
+        return value;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -38,12 +63,16 @@ public class MainPage : MonoBehaviour
 
     public void RegisterClick()
     {
-        PageManager.instance.RegisterClick();
+//        PageManager.instance.RegisterClick();
+        // aggiunta solo per prova
+        Debug.Log("start");
+        StartCoroutine("StartConnection");
     }
 
     public void LoginClick()
     {
         // salvo i dati
+        StartCoroutine("InsertData");
     }
 
     //    #region ISelectHandler implementation
