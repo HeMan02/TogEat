@@ -30,7 +30,7 @@ public class MainPage : MonoBehaviour
 
     IEnumerator StartConnection()
     {
-        WWW itemsData = new WWW("http://localhost/QueryDB/Query.php");
+        WWW itemsData = new WWW("http://192.168.1.237/QueryDB/Query.php"); // LocalHost se sulla stessa macchina
         yield return itemsData;
         string itemsDataString = itemsData.text;
         Debug.Log(itemsDataString);
@@ -40,7 +40,7 @@ public class MainPage : MonoBehaviour
 
     IEnumerator InsertData()
     {
-        WWW itemsData = new WWW("http://localhost/QueryDB/Insert.php");
+        WWW itemsData = new WWW("http://192.168.1.237/QueryDB/Insert.php"); // LocalHost se sulla stessa macchina
         yield return itemsData;
         Debug.Log("Insert");
     }
