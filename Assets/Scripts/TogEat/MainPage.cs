@@ -7,81 +7,54 @@ using UnityEngine.EventSystems;
 public class MainPage : MonoBehaviour
 {
 
-    public GameObject username;
-    public GameObject mail;
-    public GameObject password;
-    public GameObject buttonLogin;
-    public GameObject buttonRegister;
+	public GameObject username;
+	public GameObject mail;
+	public GameObject password;
+	public GameObject buttonLogin;
+	public GameObject buttonRegister;
 
-    //    TouchScreenKeyboard keyboard;
-    string usernameString;
-    string passwordString;
-    public string[] items;
+	//    TouchScreenKeyboard keyboard;
+	string usernameString;
+	string passwordString;
 
-    InputField usernameInputField;
-    InputField passwordInputField;
+	InputField usernameInputField;
+	InputField passwordInputField;
 
-    // Use this for initialization
-    void Start()
-    {
-        usernameInputField = username.transform.GetChild(0).GetComponent<InputField>();
-        passwordInputField = password.transform.GetChild(0).GetComponent<InputField>();
-    }
+	// Use this for initialization
+	void Start ()
+	{
+		usernameInputField = username.transform.GetChild (0).GetComponent<InputField> ();
+		passwordInputField = password.transform.GetChild (0).GetComponent<InputField> ();
+	}
+		
+	// Update is called once per frame
+	void Update ()
+	{
+		usernameString = usernameInputField.text;
+		passwordString = passwordInputField.text;
+		Debug.Log ("il testo nome contiene " + usernameString);
+		Debug.Log ("il testo password contiene " + passwordString);
+	}
 
-    IEnumerator StartConnection()
-    {
-        WWW itemsData = new WWW("http://localhost/QueryDB/Query.php");
-        yield return itemsData;
-        string itemsDataString = itemsData.text;
-        Debug.Log(itemsDataString);
-        items = itemsDataString.Split(';');
-        Debug.Log(GetDataValue(items[1], "Name:"));
-    }
+	public void RegisterClick ()
+	{
+        PageManager.instance.RegisterClick();
+		// aggiunta solo per prova
+//		Debug.Log ("start");
+	}
 
-    IEnumerator InsertData()
-    {
-        WWW itemsData = new WWW("http://localhost/QueryDB/Insert.php");
-        yield return itemsData;
-        Debug.Log("Insert");
-    }
+	public void LoginClick ()
+	{
+		if(PageManager.instance.CheckLogin (usernameString, passwordString)){
+			// open next page 
+			Debug.Log("Entrato");
+		}else{
+			Debug.Log("NON entrato");
+			usernameInputField.text = "";
+			passwordInputField.text = "";
+		}
+		// salvo i dati
+	}
 
-    string GetDataValue(string data, string index)
-    {
-        string value = data.Substring(data.IndexOf(index) + index.Length);
-//        value = value.Remove(value.IndexOf("|"));
-        return value;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        usernameString = usernameInputField.text;
-        passwordString = passwordInputField.text;
-        Debug.Log("il testo nome contiene " + usernameString);
-        Debug.Log("il testo password contiene " + passwordString);
-    }
-
-    public void RegisterClick()
-    {
-//        PageManager.instance.RegisterClick();
-        // aggiunta solo per prova
-        Debug.Log("start");
-        StartCoroutine("StartConnection");
-    }
-
-    public void LoginClick()
-    {
-        // salvo i dati
-        StartCoroutine("InsertData");
-    }
-
-    //    #region ISelectHandler implementation
-    //
-    //    public void OnSelect(BaseEventData eventData)
-    //    {
-    //        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
-    //        keyboard.active = true;
-    //    }
-    //
-    //    #endregion
 }

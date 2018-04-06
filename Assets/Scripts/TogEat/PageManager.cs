@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PageManager : MonoBehaviour
 {
-
+	// Deve contenere le connessioni al DB e tutte le funzioni possibili da richiamare con COROUTINE
     public static PageManager instance;
+	public string[] items;
 
     void Awake()
     {
@@ -35,5 +36,48 @@ public class PageManager : MonoBehaviour
     {
         SceneManager.LoadScene("TogEatRegister");
     }
+
+	public bool CheckLogin (string usernameString, string passwordString)
+	{
+		// query db se nome e pass giusti
+		if (false) { // presenti entro
+			return true;
+		} else
+			return false;
+	}
+
+	// ================================ CONNESSIONE AL DB ===================================================
+
+	public void OpenConnection(){
+		StartCoroutine ("StartConnection");
+	}
+
+	public void InsertDataConnection(){
+		StartCoroutine ("InsertData");
+	}
+
+	IEnumerator StartConnection ()
+	{
+		WWW itemsData = new WWW ("http://localhost/QueryDB/Query.php");
+		yield return itemsData;
+		string itemsDataString = itemsData.text;
+		Debug.Log (itemsDataString);
+		items = itemsDataString.Split (';');
+		Debug.Log (GetDataValue (items [1], "Name:"));
+	}
+
+	IEnumerator InsertData ()
+	{
+		WWW itemsData = new WWW ("http://localhost/QueryDB/Insert.php");
+		yield return itemsData;
+		Debug.Log ("Insert");
+	}
+
+	string GetDataValue (string data, string index)
+	{
+		string value = data.Substring (data.IndexOf (index) + index.Length);
+		//        value = value.Remove(value.IndexOf("|"));
+		return value;
+	}
         
 }

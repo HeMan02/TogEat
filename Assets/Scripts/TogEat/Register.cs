@@ -22,6 +22,7 @@ public class Register : MonoBehaviour
 
     InputField usernameInputField;
     InputField passwordInputField;
+	InputField confPasswordInputField;
 
     bool emailValid;
     // Use this for initialization
@@ -29,6 +30,7 @@ public class Register : MonoBehaviour
     {
         usernameInputField = username.transform.GetChild(0).GetComponent<InputField>();
         passwordInputField = password.transform.GetChild(0).GetComponent<InputField>();
+		confPasswordInputField = confPassword.transform.GetChild(0).GetComponent<InputField>();
     }
 	
     // Update is called once per frame
@@ -36,6 +38,7 @@ public class Register : MonoBehaviour
     {
         usernameString = usernameInputField.text;
         passwordString = passwordInputField.text;
+		confPAsswordString = confPasswordInputField.text;
         Debug.Log("il testo nome contiene " + usernameString);
         Debug.Log("il testo password contiene " + passwordString);
     }
@@ -43,6 +46,15 @@ public class Register : MonoBehaviour
     public void RegisterClick()
     {
         // salvo i dati
+		if(PageManager.instance.CheckLogin (usernameString, passwordString)){
+			// open next page 
+			Debug.Log("Entrato");
+		}else{
+			Debug.Log("NON entrato");
+			usernameInputField.text = "";
+			passwordInputField.text = "";
+			confPasswordInputField.text = "";
+		}
     }
 
 
@@ -50,14 +62,4 @@ public class Register : MonoBehaviour
     {
         PageManager.instance.BackClick("TogEatMain");
     }
-
-    //    #region ISelectHandler implementation
-    //
-    //    public void OnSelect(BaseEventData eventData)
-    //    {
-    //        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
-    //        keyboard.active = true;
-    //    }
-    //
-    //    #endregion
 }
