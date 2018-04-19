@@ -56,14 +56,18 @@ public class PageManager : MonoBehaviour
 		StartCoroutine ("InsertData");
 	}
 
+	public void CiccioDataConnection(){
+		StartCoroutine ("CiccioConnect");
+	}
+
 	IEnumerator StartConnection ()
 	{
-		WWW itemsData = new WWW ("http://localhost/QueryDB/Query.php");
+		WWW itemsData = new WWW ("http://togeathosting.altervista.org/Query.php");
 		yield return itemsData;
 		string itemsDataString = itemsData.text;
 		Debug.Log (itemsDataString);
-		items = itemsDataString.Split (';');
-		Debug.Log (GetDataValue (items [1], "Name:"));
+//		items = itemsDataString.Split (';');
+//		Debug.Log (GetDataValue (items [1], "Name:"));
 	}
 
 	IEnumerator InsertData ()
@@ -71,6 +75,13 @@ public class PageManager : MonoBehaviour
 		WWW itemsData = new WWW ("http://localhost/QueryDB/Insert.php");
 		yield return itemsData;
 		Debug.Log ("Insert");
+	}
+
+	IEnumerator CiccioConnect ()
+	{
+		WWW itemsData = new WWW ("http://togeathosting.altervista.org/Ciccio.php");
+		yield return itemsData;
+		Debug.Log ("Ciccio http");
 	}
 
 	string GetDataValue (string data, string index)
