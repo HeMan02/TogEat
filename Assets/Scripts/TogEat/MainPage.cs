@@ -46,6 +46,7 @@ public class MainPage : MonoBehaviour
 	public void LoginClick ()
 	{
 		PageManager.instance.OpenConnection ();
+		PageManager.instance.InsertDataConnection ();
 		PageManager.instance.CiccioDataConnection ();
 		Debug.Log("Click for ciccio");
 		if(PageManager.instance.CheckLogin (usernameString, passwordString)){

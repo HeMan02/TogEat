@@ -72,7 +72,7 @@ public class PageManager : MonoBehaviour
 
 	IEnumerator InsertData ()
 	{
-		WWW itemsData = new WWW ("http://localhost/QueryDB/Insert.php");
+		WWW itemsData = new WWW ("http://togeathosting.altervista.org/Insert.php");
 		yield return itemsData;
 		Debug.Log ("Insert");
 	}
