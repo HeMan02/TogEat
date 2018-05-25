@@ -45,16 +45,9 @@ public class Register : MonoBehaviour
 
     public void RegisterClick()
     {
-        // salvo i dati
-		if(PageManager.instance.CheckLogin (usernameString, passwordString)){
-			// open next page 
-			Debug.Log("Entrato");
-		}else{
-			Debug.Log("NON entrato");
-			usernameInputField.text = "";
-			passwordInputField.text = "";
-			confPasswordInputField.text = "";
-		}
+		PageManager.instance.mailClient = usernameString;
+		PageManager.instance.passClient = passwordString;
+		PageManager.instance.CheckPassMailRegisterConnection ();
     }
 
 

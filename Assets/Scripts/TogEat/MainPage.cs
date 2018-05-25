@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class MainPage : MonoBehaviour
 {
-
+	public static MainPage instance;
 	public GameObject username;
 	public GameObject mail;
 	public GameObject password;
@@ -23,6 +23,7 @@ public class MainPage : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		instance = this;
 		usernameInputField = username.transform.GetChild (0).GetComponent<InputField> ();
 		passwordInputField = password.transform.GetChild (0).GetComponent<InputField> ();
 	}
@@ -32,35 +33,25 @@ public class MainPage : MonoBehaviour
 	{
 		usernameString = usernameInputField.text;
 		passwordString = passwordInputField.text;
-		Debug.Log ("il testo nome contiene " + usernameString);
-		Debug.Log ("il testo password contiene " + passwordString);
+//		Debug.Log ("il testo nome contiene " + usernameString);
+//		Debug.Log ("il testo password contiene " + passwordString);
 	}
 
 	public void RegisterClick ()
 	{
         PageManager.instance.RegisterClick();
-		// aggiunta solo per prova
-//		Debug.Log ("start");
 	}
 
 	public void LoginClick ()
 	{
 		PageManager.instance.mailClient = usernameString;
 		PageManager.instance.passClient = passwordString;
-		PageManager.instance.OpenConnection ();
-//		PageManager.instance.InsertDataConnection ();
-//		PageManager.instance.CiccioDataConnection ();
-		Debug.Log("Click for ciccio");
-		if(PageManager.instance.CheckLogin (usernameString, passwordString)){
-			// open next page 
-			Debug.Log("Entrato");
-		}else{
-			Debug.Log("NON entrato");
-			usernameInputField.text = "";
-			passwordInputField.text = "";
-		}
-		// salvo i dati
+		PageManager.instance.CheckPassMailLogInConnection ();
 	}
 
-
+	public void OpenLoginPage(){
+		Debug.Log("Entrato");
+		// Tenuta scena di resgistrazione pèrovvisoria poer vedere se mi cambiava scena come TEST
+		PageManager.instance.BackClick ("TogEatRegister");
+	}
 }
