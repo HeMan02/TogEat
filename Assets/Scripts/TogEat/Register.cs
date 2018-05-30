@@ -6,13 +6,14 @@ using UnityEngine.EventSystems;
 
 public class Register : MonoBehaviour
 {
-
+	public static Register instance;
     public GameObject username;
     public GameObject mail;
     public GameObject password;
     public GameObject confPassword;
     public GameObject buttonRegisterConfirmed;
     public GameObject buttonFacebook;
+	public Text infoText;
 
     TouchScreenKeyboard keyboard;
     string usernameString;
@@ -28,9 +29,11 @@ public class Register : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		instance = this;
         usernameInputField = username.transform.GetChild(0).GetComponent<InputField>();
         passwordInputField = password.transform.GetChild(0).GetComponent<InputField>();
 		confPasswordInputField = confPassword.transform.GetChild(0).GetComponent<InputField>();
+		infoText.text = "";
     }
 	
     // Update is called once per frame
@@ -47,7 +50,11 @@ public class Register : MonoBehaviour
     {
 		PageManager.instance.mailClient = usernameString;
 		PageManager.instance.passClient = passwordString;
+		if(string.Compare (passwordString, confPAsswordString) != 0){
+			PrintInfoText ("PASS diverse,reinserire corrette");
+		}else{
 		PageManager.instance.CheckPassMailRegisterConnection ();
+		}
     }
 
 
@@ -55,4 +62,9 @@ public class Register : MonoBehaviour
     {
         PageManager.instance.BackClick("TogEatMain");
     }
+
+	public void PrintInfoText(string textToPrint){
+		infoText.text = "";
+		infoText.text = "" + textToPrint;
+	}
 }

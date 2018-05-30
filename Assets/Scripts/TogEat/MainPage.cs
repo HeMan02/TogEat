@@ -12,6 +12,7 @@ public class MainPage : MonoBehaviour
 	public GameObject password;
 	public GameObject buttonLogin;
 	public GameObject buttonRegister;
+	public Text infoText;
 
 	//    TouchScreenKeyboard keyboard;
 	string usernameString;
@@ -26,6 +27,7 @@ public class MainPage : MonoBehaviour
 		instance = this;
 		usernameInputField = username.transform.GetChild (0).GetComponent<InputField> ();
 		passwordInputField = password.transform.GetChild (0).GetComponent<InputField> ();
+		infoText.text = "";
 	}
 		
 	// Update is called once per frame
@@ -53,5 +55,10 @@ public class MainPage : MonoBehaviour
 		Debug.Log("Entrato");
 		// Tenuta scena di resgistrazione pèrovvisoria poer vedere se mi cambiava scena come TEST
 		PageManager.instance.BackClick ("TogEatRegister");
+	}
+
+	public void PrintInfoText(string textToPrint){
+		infoText.text = "";
+		infoText.text = "" + textToPrint;
 	}
 }

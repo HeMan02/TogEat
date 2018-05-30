@@ -12,6 +12,7 @@ public class PageManager : MonoBehaviour
 	public string itemsDataString;
 	public string passClient = null;
 	public string mailClient = null;
+	public string passToConfirmClient = null;
 	bool mailCheck = false;
 	bool passcheck = false;
 
@@ -21,6 +22,8 @@ public class PageManager : MonoBehaviour
         if (numGameobject > 1)
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
+//		infoTextObj = GameObject.Find ("infoTextObj");
+		Debug.Log("Awake");
     }
     // Use this for initialization
     void Start()
@@ -91,6 +94,7 @@ public class PageManager : MonoBehaviour
 			MainPage.instance.OpenLoginPage ();
 		} else {
 			Debug.Log ("PASS SBAGLIATA ");
+			MainPage.instance.PrintInfoText ("PASS SBAGLIATA");
 		}
 	}
 
@@ -128,9 +132,12 @@ public class PageManager : MonoBehaviour
 		//		Debug.Log("mailCheck " +  mailCheck + " passcheck " + passcheck);
 		if (mailCheck && passcheck) {
 			// mi vado a prendere il riferimentop o vedo come dagli l'input per settare a ok e andare avanti se no no
-			Debug.Log ("PASS Già presente, non ti puoi registrare ");
+			Debug.Log ("PASS già presente, non ti puoi registrare ");
+			Register.instance.PrintInfoText ("PASS già presente, non ti puoi registrare ");
 		} else {
 			Debug.Log ("PASS non presente ti registro ");
+			Register.instance.PrintInfoText ("PASS non presente ti registro ");
+			// CHIAMARE l'insert nel DB
 		}
 	}
 
