@@ -139,7 +139,7 @@ public class PageManager : MonoBehaviour
 		} else {
 			Debug.Log ("PASS non presente ti registro ");
 			Register.instance.PrintInfoText ("PASS non presente ti registro ");
-			CreateUser(mail,pass) // AGGIUNTO 
+			CreateUser (mailClient, passClient); // AGGIUNTO 
 			// CHIAMARE l'insert nel DB
 		}
 	}
@@ -155,7 +155,7 @@ public class PageManager : MonoBehaviour
 	WWWForm form = new WWWForm();
 	form.AddField("mailclientPost",mail);
 	form.AddField("passClientPost",pass);
-	WWW www = new WWW(CreateUserUrl,form)
+		WWW www = new WWW (CreateUserUrl, form);
     }
 
 	IEnumerator CiccioConnect ()
