@@ -15,7 +15,9 @@ public class PageManager : MonoBehaviour
 	public string passToConfirmClient = null;
 	bool mailCheck = false;
 	bool passcheck = false;
-
+	public string CreateUserUrl = "http://togeathosting.altervista.org/Insert.php";
+	
+	
     void Awake()
     {
         int numGameobject = GameObject.FindGameObjectsWithTag("PageManager").Length;
@@ -137,6 +139,7 @@ public class PageManager : MonoBehaviour
 		} else {
 			Debug.Log ("PASS non presente ti registro ");
 			Register.instance.PrintInfoText ("PASS non presente ti registro ");
+			CreateUser(mail,pass) // AGGIUNTO 
 			// CHIAMARE l'insert nel DB
 		}
 	}
@@ -146,6 +149,14 @@ public class PageManager : MonoBehaviour
 ////		WWW itemsData = new WWW ("http://togeathosting.altervista.org/Insert.php");
 ////		yield return itemsData;
 //	}
+
+    //  INSERT
+    public void CreateUser(string mail, string pass){
+	WWWForm form = new WWWForm();
+	form.AddField("mailclientPost",mail);
+	form.AddField("passClientPost",pass);
+	WWW www = new WWW(CreateUserUrl,form)
+    }
 
 	IEnumerator CiccioConnect ()
 	{
