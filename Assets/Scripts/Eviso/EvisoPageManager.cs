@@ -16,7 +16,14 @@ public class EvisoPageManager : MonoBehaviour {
 	bool mailCheck = false;
 	bool passcheck = false;
 	public string CreateUserUrl = "http://togeathosting.altervista.org/Insert.php";
+	public int numberButtonBills = 0;
 
+	// utilizzo una lista di strutture dove associo ad ognuna i dati del grafico e andranno associati al tasto
+	public struct GraphData{
+		public int f1;
+		public int f2;
+		public int f3;
+	}
 
 	void Awake()
 	{
@@ -55,6 +62,10 @@ public class EvisoPageManager : MonoBehaviour {
 	public void EvisoBollettaClick()
 	{
 		SceneManager.LoadScene("EvisoBollettaMain");
+	}
+	public void EvisoBollettaGraph()
+	{
+		SceneManager.LoadScene("EvisoBollettaGraph");
 	}
 	public void EvisoAutoletturaClick()
 	{

@@ -22,6 +22,7 @@ public class EvisoChoice : MonoBehaviour {
 		//		EvisoPageManager.instance.mailClient = usernameString;
 		//		EvisoPageManager.instance.passClient = passwordString;
 		//		EvisoPageManager.instance.CheckPassMailLogInConnection ();
+		EvisoPageManager.instance.numberButtonBills = 2;
 		EvisoPageManager.instance.EvisoBollettaClick();
 	}
 

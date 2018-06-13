@@ -5,10 +5,15 @@ using UnityEngine;
 public class EvisoBollettaMain : MonoBehaviour {
 
 	public GameObject scrollContent;
-	// Use this for initialization
+
 	void Start () {
-		Debug.Log ("ButtonInstantiate");
-		GameObject instance = Instantiate(Resources.Load("Button", typeof(GameObject))) as GameObject;
+		// istanzio tanti bottoni quante letture ho
+		for (int i = 0; i < EvisoPageManager.instance.numberButtonBills; i++){
+			Debug.Log ("ButtonInstantiate");
+			GameObject instanceObj = Instantiate(Resources.Load("Button", typeof(GameObject))) as GameObject;
+			instanceObj.name = "B" + i;
+			instanceObj.transform.parent = scrollContent.transform;
+		}
 	}
 	
 	// Update is called once per frame
