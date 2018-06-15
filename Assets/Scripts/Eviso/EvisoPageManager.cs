@@ -17,13 +17,19 @@ public class EvisoPageManager : MonoBehaviour {
 	bool passcheck = false;
 	public string CreateUserUrl = "http://togeathosting.altervista.org/Insert.php";
 	public int numberButtonBills = 0;
+	public GraphData graph1;
+	public GraphData graph2;
+	public List<GraphData> graphList;
 
 	// utilizzo una lista di strutture dove associo ad ognuna i dati del grafico e andranno associati al tasto
 	public struct GraphData{
-		public int f1;
-		public int f2;
-		public int f3;
+		public float f1;
+		public float f2;
+		public float f3;
 	}
+	
+	// la lista dei grafi contiene la lista dei tasti e al sui interno per ogni tasto il contenuto di f1,f2,f3 per quella data ( dati ricevuti tutti da DB )
+
 
 	void Awake()
 	{
@@ -38,6 +44,18 @@ public class EvisoPageManager : MonoBehaviour {
 	void Start()
 	{
 		instance = this;
+		graphList = new List<GraphData>();
+		graph1 = new GraphData();
+		graph2 = new GraphData();
+		graph1.f1 = 0.3f;
+		graph1.f2 = 0.4f;
+		graph1.f3 = 0.7f;
+		graph2.f1 = 0.1f;
+		graph2.f2 = 0.7f;
+		graph2.f3 = 0.9f;
+		graph2 = new GraphData();
+		graphList.Add(graph1);
+		graphList.Add(graph2);
 	}
 
 	// Update is called once per frame
