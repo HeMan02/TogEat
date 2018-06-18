@@ -26,9 +26,6 @@ public class EvisoBollettaMain : MonoBehaviour {
 		//		EvisoPageManager.instance.mailClient = usernameString;
 		//		EvisoPageManager.instance.passClient = passwordString;
 		//		EvisoPageManager.instance.CheckPassMailLogInConnection ();
-		string nameObj = gameObject.name.Replace("B","");
-		Debug.Log (nameObj);
-//		EvisoPageManager.instance.numberButtonBills = 
 		EvisoPageManager.instance.BackClick("EvisoChoice");
 	}
 }
