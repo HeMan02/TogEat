@@ -53,7 +53,6 @@ public class EvisoPageManager : MonoBehaviour {
 		graph2.f1 = 0.1f;
 		graph2.f2 = 0.7f;
 		graph2.f3 = 0.9f;
-		graph2 = new GraphData();
 		graphList.Add(graph1);
 		graphList.Add(graph2);
 	}
@@ -61,6 +60,24 @@ public class EvisoPageManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
+		// controllo sul tasto di ritorno back
+		if (Input.GetKey (KeyCode.Escape)) { 
+			var actualScene = SceneManager.GetActiveScene ();
+			switch (actualScene.name) { // in base a ogni scenaq torno indietro a quella che mi serve
+			case "EvisoMain":
+				Debug.Log ("Sono nel Main non posso tornarte indietro");
+				break;
+			case "EvisoChoice":
+				SceneManager.LoadScene("EvisoMain");
+				break;
+			case "EvisoBollettaMain":
+				SceneManager.LoadScene("EvisoChoice");
+				break;
+			case "EvisoGraph":
+				SceneManager.LoadScene("EvisoBollettaMain");
+				break;
+			}
+		}
 	}
 
 	public void BackClick(string pageName)

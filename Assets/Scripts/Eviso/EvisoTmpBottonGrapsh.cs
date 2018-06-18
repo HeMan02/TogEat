@@ -19,6 +19,7 @@ public class EvisoTmpBottonGrapsh : MonoBehaviour {
 		//		EvisoPageManager.instance.mailClient = usernameString;
 		//		EvisoPageManager.instance.passClient = passwordString;
 		//		EvisoPageManager.instance.CheckPassMailLogInConnection ();
+		EvisoPageManager.instance.numberButtonBills = int.Parse(gameObject.name.Replace("B",""));
 		EvisoPageManager.instance.BackClick("EvisoGraph");
 	}
 }

@@ -8,7 +8,7 @@ public class EvisoBollettaMain : MonoBehaviour {
 
 	void Start () {
 		// istanzio tanti bottoni quante letture ho
-		for (int i = 0; i < EvisoPageManager.instance.numberButtonBills; i++){
+		for (int i = 0; i < EvisoPageManager.instance.graphList.Count; i++){
 			Debug.Log ("ButtonInstantiate");
 			GameObject instanceObj = Instantiate(Resources.Load("Button", typeof(GameObject))) as GameObject;
 			instanceObj.name = "B" + i;
@@ -26,6 +26,9 @@ public class EvisoBollettaMain : MonoBehaviour {
 		//		EvisoPageManager.instance.mailClient = usernameString;
 		//		EvisoPageManager.instance.passClient = passwordString;
 		//		EvisoPageManager.instance.CheckPassMailLogInConnection ();
+		string nameObj = gameObject.name.Replace("B","");
+		Debug.Log (nameObj);
+//		EvisoPageManager.instance.numberButtonBills = 
 		EvisoPageManager.instance.BackClick("EvisoChoice");
 	}
 }
