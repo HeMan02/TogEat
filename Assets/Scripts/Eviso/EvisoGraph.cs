@@ -21,9 +21,9 @@ public class EvisoGraph : MonoBehaviour {
 		fillamountBarF1.fillAmount = 0;
 		fillamountBarF2.fillAmount = 0;
 		fillamountBarF3.fillAmount = 0;
-		textF1.text = EvisoPageManager.instance.graphList [EvisoPageManager.instance.numberButtonBills].f1.ToString("F1");
-		textF2.text = EvisoPageManager.instance.graphList [EvisoPageManager.instance.numberButtonBills].f2.ToString("F1");;
-		textF3.text = EvisoPageManager.instance.graphList [EvisoPageManager.instance.numberButtonBills].f3.ToString("F1");;
+		textF1.text = EvisoPageManager.instance.graphList [EvisoPageManager.instance.numberButtonBills].f1.ToString("F1") + " kW";
+		textF2.text = EvisoPageManager.instance.graphList [EvisoPageManager.instance.numberButtonBills].f2.ToString("F1") + " kW";
+		textF3.text = EvisoPageManager.instance.graphList [EvisoPageManager.instance.numberButtonBills].f3.ToString("F1") + " kW";
 		GenerateValueChar ();
 	}
 	
