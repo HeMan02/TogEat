@@ -13,6 +13,7 @@ public class EvisoBollettaMain : MonoBehaviour {
 			GameObject instanceObj = Instantiate(Resources.Load("Button", typeof(GameObject))) as GameObject;
 			instanceObj.name = "B" + i;
 			instanceObj.transform.parent = scrollContent.transform;
+			instanceObj.transform.GetChild (0).GetComponent<UnityEngine.UI.Text>().text = "pippo"; // data 
 		}
 	}
 	

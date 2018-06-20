@@ -23,6 +23,7 @@ public class EvisoPageManager : MonoBehaviour {
 
 	// utilizzo una lista di strutture dove associo ad ognuna i dati del grafico e andranno associati al tasto
 	public struct GraphData{
+		string data;
 		public float f1;
 		public float f2;
 		public float f3;
@@ -47,12 +48,12 @@ public class EvisoPageManager : MonoBehaviour {
 		graphList = new List<GraphData>();
 		graph1 = new GraphData();
 		graph2 = new GraphData();
-		graph1.f1 = 0.3f;
-		graph1.f2 = 0.4f;
-		graph1.f3 = 0.7f;
-		graph2.f1 = 0.1f;
-		graph2.f2 = 0.7f;
-		graph2.f3 = 0.9f;
+		graph1.f1 = Random.Range(0f,200f);
+		graph1.f2 = Random.Range(0f,200f);
+		graph1.f3 = Random.Range(0f,200f);
+		graph2.f1 = Random.Range(0f,200f);
+		graph2.f2 = Random.Range(0f,200f);
+		graph2.f3 = Random.Range(0f,200f);
 		graphList.Add(graph1);
 		graphList.Add(graph2);
 	}
@@ -109,6 +110,10 @@ public class EvisoPageManager : MonoBehaviour {
 	public void EvisoNestoreClick()
 	{
 		SceneManager.LoadScene("EvisoNestore");
+	}
+		public void EvisoOpenGraphClick()
+	{
+		SceneManager.LoadScene("EvisoGraph");
 	}
 
 	// ================================ CONNESSIONE AL DB ===================================================
