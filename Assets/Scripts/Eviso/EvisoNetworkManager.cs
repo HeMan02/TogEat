@@ -16,7 +16,11 @@ public class EvisoNetworkManager : MonoBehaviour {
 //		
 //	}
 
-	void OnGui(){
+	void OnServerInizialized(){
+		Debug.Log ("SERVERR!!");
+	}
+
+	void OnGUI(){
 		Debug.Log("NETWORKKKKKKKKKKKKKKKKKKKKK");
 		if (Network.peerType == NetworkPeerType.Disconnected) {
 			if (GUI.Button (new Rect (100, 100, 100, 25), "Start Client")) {
@@ -27,14 +31,14 @@ public class EvisoNetworkManager : MonoBehaviour {
 			}
 		} else {
 			if (Network.peerType == NetworkPeerType.Client) {
-				GUI.Label (new Rect (100, 100, 100, 25), "SONO IL CLIENT");
-				if (GUI.Button (new Rect (100, 125, 100, 25), "Logout")) {
+				GUI.Label (new Rect (100, 100, 100, 25), "CLIENT");
+				if (GUI.Button (new Rect (100, 150, 100, 25), "Logout")) {
 					Network.Disconnect (250);
 				}
 			}
 			if (Network.peerType == NetworkPeerType.Server) {
-				GUI.Label (new Rect (100, 100, 100, 25), "SONO IL SERVER");
-				GUI.Label (new Rect (100, 100, 125, 25), "Connection: " + Network.connections.Length );
+				GUI.Label (new Rect (100, 100, 100, 25), "SERVER");
+				GUI.Label (new Rect (100, 125, 100, 25), "Connection: " + Network.connections.Length );
 				if (GUI.Button (new Rect (100, 150, 100, 25), "Logout")) {
 					Network.Disconnect (250);
 				}
