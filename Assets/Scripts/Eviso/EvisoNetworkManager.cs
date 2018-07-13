@@ -39,6 +39,7 @@ public class EvisoNetworkManager : NetworkBehaviour {
 	// Messaggio dal Server ai clients , problema che ricevono multi messaggi!!
 	[ClientRpc]
 	void RpcServerToClient(){
+		if(isLocalPlayer)
 			Debug.LogError ("Server scrive al Client");
 	}
 
