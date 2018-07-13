@@ -49,12 +49,12 @@ public class EvisoMainPage : MonoBehaviour {
 //		EvisoPageManager.instance.mailClient = usernameString;
 //		EvisoPageManager.instance.passClient = passwordString;
 //		EvisoPageManager.instance.CheckPassMailLogInConnection ();
-		EvisoPageManager.instance.EvisoChoiceClick();
+		EvisoNetworkManager.OwnerInstance.CmdCheckClient("pippo","2345",Random.Range (0, 2));
+//		EvisoPageManager.instance.EvisoChoiceClick();
 	}
 
 	public void OpenLoginPage(){
 		Debug.Log("Entrato");
-		// Tenuta scena di resgistrazione pèrovvisoria poer vedere se mi cambiava scena come TEST
 		PageManager.instance.BackClick ("TogEatRegister");
 	}
 
