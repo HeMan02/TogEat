@@ -10,10 +10,7 @@ public class EvisoNetworkManager : NetworkBehaviour {
 	public int port = 25001;
 	public static EvisoNetworkManager ServerInstance;
 	public static EvisoNetworkManager OwnerInstance;
-
-	void OnServerInizialized(){
-		Debug.Log ("SERVERR!!");
-	}
+	public NetworkIdentity nId; // utilizzato per capire l'unico oggetto in locale utilizzatore degli script
 
 	// utilizzo l'instance per generare una sola copia del server e per controllare se sono l'owner andrò a vedere se esiste l'instance
 	void Awake(){
@@ -22,16 +19,26 @@ public class EvisoNetworkManager : NetworkBehaviour {
 		} else {
 			OwnerInstance = this;
 		}
+		nId = gameObject.GetComponent<NetworkIdentity> (); // mi facci orestituire il networkidentity per capire l'owner
 	}
 
-	void Start(){
-		if (EvisoNetworkManager.ServerInstance != null) {
-//			RpcServerToClient (); // nell ostart del server contatta i client , in teoria sarà vuoto un domani
-		} else {
-//			CmdCheckClient("Pippo","012345",Random.Range (0, 2));
-//			CmdClientToServer (); // contatto i lserver
-//			CmdPrintNum (Random.Range (0, 2)); // mando un numero al server e lui me l orestituisce uguale
+	// Chiamato dall'oggetto sul server quando viene inzializzato 
+	public override void OnStartServer(){
+		if (nId.isLocalPlayer) {
+			Debug.LogError ("SERVER da networkOBJ!!");
 		}
+	}
+	// chiamato da tutti gli obj quando inizializzato
+	public override void OnStartClient(){
+		if (nId.isLocalPlayer) {
+			Debug.LogError ("Client da networkOBJ!!");
+		}
+	}
+		
+	void Start(){
+		if (nId.isLocalPlayer) {
+			Debug.LogError ("Client da networkOBJ nello start solo io");
+		} 
 	}
 
 	void Update(){ // Test per vedeer a chi manda i messaggi
