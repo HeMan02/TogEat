@@ -73,6 +73,7 @@ public class EvisoNetworkManager : NetworkBehaviour {
 
 	[Command]
 	public void CmdCheckClient(string name,string password,int num){
+		TargetResposeToClient (connectionToClient,num);
 		Debug.LogError ("client dice al server  il num: " + num);
 		if(num == 0){
 			TargetChekValue (connectionToClient,true);

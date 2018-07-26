@@ -44,12 +44,13 @@ public class EvisoMainPage : MonoBehaviour {
 //		PageManager.instance.RegisterClick();
 	}
 
+	// quando si preme il lognin click in locale, solo su un oggetto viene eseguito
 	public void LoginClick ()
 	{
 //		EvisoPageManager.instance.mailClient = usernameString;
 //		EvisoPageManager.instance.passClient = passwordString;
 //		EvisoPageManager.instance.CheckPassMailLogInConnection ();
-		EvisoNetworkManager.OwnerInstance.CmdCheckClient("pippo","2345",Random.Range (0, 2));
+		EvisoNetworkManager.OwnerInstance.CmdCheckClient("pippo","2345",Random.Range (0, 10));
 //		EvisoPageManager.instance.EvisoChoiceClick();
 	}
 
