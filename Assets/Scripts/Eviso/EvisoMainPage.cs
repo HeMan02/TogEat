@@ -50,7 +50,7 @@ public class EvisoMainPage : MonoBehaviour {
 //		EvisoPageManager.instance.mailClient = usernameString;
 //		EvisoPageManager.instance.passClient = passwordString;
 //		EvisoPageManager.instance.CheckPassMailLogInConnection ();
-		EvisoNetworkObj.OwnerInstance.CmdCheckClient("pippo","2345",Random.Range (0, 10));
+		EvisoNetworkObj.OwnerInstance.CmdCheckClient("pippo","2345",Random.Range (0, 10)); // vado a generare un numero random per il passaggio CLIENT->SERVER e viceversa
 //		EvisoPageManager.instance.EvisoChoiceClick();
 	}
 
